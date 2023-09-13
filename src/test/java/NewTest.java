@@ -20,4 +20,13 @@ public class NewTest {
         $(".paragraph").shouldHave(exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
 
     }
+    @Test
+    void shouldTestError() {
+        open("http://localhost:9999/");
+        SelenideElement form = $("[action]");
+        form.$(".input.input_type_text input").setValue("Ivan Ivanov");
+        form.$("button").click();
+        $(".input__sub").shouldHave(exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
+
+    }
 }
